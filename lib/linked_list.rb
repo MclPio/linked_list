@@ -71,6 +71,21 @@ class LinkedList
       current_index += 1
     end
   end
+
+  def contains?(value)
+    current_node = @head
+    count = 0
+    loop do
+      break if count == 1
+
+      count += 1 if current_node.next_node.nil?
+
+      return true if current_node.value == value
+
+      current_node = current_node.next_node
+    end
+    false
+  end
 end
 
 class Node
@@ -94,4 +109,7 @@ my_list.head
 my_list.tail
 my_list.at(3)
 my_list.pop
-p my_list
+my_list.append(:boi)
+my_list.contains?(:boi)
+my_list.contains?('foo')
+my_list.contains?(12)
