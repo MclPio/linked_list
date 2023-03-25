@@ -1,5 +1,5 @@
 class LinkedList
-  attr_accessor :head
+  attr_accessor :head, :tail
 
   def initialize
     @head = nil
@@ -32,11 +32,28 @@ class LinkedList
     count = 0
     current_node = @head
     loop do
+      break if current_node.nil?
+
       current_node = current_node.next_node
       count += 1
-      break if current_node.nil?
     end
     count
+  end
+
+  def at(index)
+    current_index = 0
+    current_node = @head
+    loop do
+      break if index == current_index
+
+      if current_node == @tail
+        current_node = 'Out of range'
+        break
+      end
+      current_node = current_node.next_node
+      current_index += 1
+    end
+    current_node
   end
 end
 
@@ -51,10 +68,14 @@ end
 
 
 my_list = LinkedList.new()
+
 my_list.prepend('bar')
 my_list.append(1)
 my_list.append(2)
 my_list.append(3)
 my_list.prepend('foo')
-p my_list
+my_list
 p my_list.size
+my_list.head
+my_list.tail
+p my_list.at(3)
