@@ -12,4 +12,4 @@ Methods:
 8. contains?(value)
 9. find(value)
 10. to_s
-11. insert_at(value, index)
+11. insert_at!(value, index)
