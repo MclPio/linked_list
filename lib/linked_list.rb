@@ -27,6 +27,17 @@ class LinkedList
       @head = new_node
     end
   end
+
+  def size
+    count = 0
+    current_node = @head
+    loop do
+      current_node = current_node.next_node
+      count += 1
+      break if current_node.nil?
+    end
+    count
+  end
 end
 
 class Node
@@ -46,3 +57,4 @@ my_list.append(2)
 my_list.append(3)
 my_list.prepend('foo')
 p my_list
+p my_list.size
