@@ -114,6 +114,27 @@ class LinkedList
       current_node = current_node.next_node
     end
   end
+
+  def insert_at(value, index)
+    current_node = @head
+    current_index = 0
+    loop do
+      if index == current_index
+        saved_nodes = current_node
+        current_node = Node.new(value, saved_nodes)
+        @head = current_node
+        break
+      elsif current_index == index - 1
+        saved_nodes = current_node.next_node 
+        current_node.next_node = Node.new(value, saved_nodes)
+        break
+      end
+      return 'Out of range' if current_node.next_node.nil?
+
+      current_node = current_node.next_node
+      current_index += 1
+    end
+  end
 end
 
 class Node
@@ -146,5 +167,6 @@ my_list.find('foo')
 my_list.find(1)
 my_list.append([1,2,3])
 my_list.prepend({a: 1})
-puts my_list
+my_list.insert_at('insert-value', 1)
 
+puts my_list
