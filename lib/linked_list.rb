@@ -76,7 +76,7 @@ class LinkedList
     current_node = @head
     count = 0
     loop do
-      break if count == 1
+      return false if count == 1
 
       count += 1 if current_node.next_node.nil?
 
@@ -84,7 +84,22 @@ class LinkedList
 
       current_node = current_node.next_node
     end
-    false
+  end
+
+  def find(value)
+    current_node = @head
+    idx = 0
+    count = 0
+    loop do
+      return false if count == 1
+
+      count += 1 if current_node.next_node.nil?
+
+      return idx if current_node.value == value
+
+      idx += 1
+      current_node = current_node.next_node 
+    end
   end
 end
 
@@ -113,3 +128,6 @@ my_list.append(:boi)
 my_list.contains?(:boi)
 my_list.contains?('foo')
 my_list.contains?(12)
+my_list.find(:boi)
+my_list.find('foo')
+my_list.find(1)
