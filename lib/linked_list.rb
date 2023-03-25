@@ -55,6 +55,22 @@ class LinkedList
     end
     current_node
   end
+
+  def pop
+    return 'Empty list' if @head.nil?
+
+    current_index = 0
+    current_node = @head
+    loop do
+      if current_node.next_node == @tail
+        @tail = current_node
+        current_node.next_node = nil
+        break
+      end
+      current_node = current_node.next_node
+      current_index += 1
+    end
+  end
 end
 
 class Node
@@ -66,16 +82,16 @@ class Node
   end
 end
 
-
-my_list = LinkedList.new()
-
+my_list = LinkedList.new
+my_list.pop
 my_list.prepend('bar')
 my_list.append(1)
 my_list.append(2)
 my_list.append(3)
 my_list.prepend('foo')
-my_list
-p my_list.size
+my_list.size
 my_list.head
 my_list.tail
-p my_list.at(3)
+my_list.at(3)
+my_list.pop
+p my_list
