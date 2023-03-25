@@ -3,12 +3,29 @@ class LinkedList
 
   def initialize
     @head = nil
+    @tail = nil
   end
 
   def append(value)
+    new_node = Node.new(value)
+    if @head.nil?
+      @head = new_node
+      @tail = @head
+    else
+      @tail.next_node = new_node
+      @tail = new_node
+    end
   end
 
   def prepend(value)
+    new_node = Node.new(value)
+    if @head.nil?
+      @head = new_node
+      @tail = @head
+    else
+      new_node.next_node = @head
+      @head = new_node
+    end
   end
 end
 
@@ -21,10 +38,11 @@ class Node
   end
 end
 
-p my_list = LinkedList.new
-my_list.append(12)
-my_list.append('hello')
-my_list.append(:poo)
-my_list.append(['xd'])
-my_list.append({ouchy:'mouchy', trip: 12})
+
+my_list = LinkedList.new()
+my_list.prepend('bar')
+my_list.append(1)
+my_list.append(2)
+my_list.append(3)
+my_list.prepend('foo')
 p my_list
